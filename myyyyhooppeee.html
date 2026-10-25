@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111014">
+  <title>To My Hope ♡</title>
+
+  <style>
+    :root {
+      --bg: #111014;
+      --text: #f4f0f7;
+      --muted: #aaa3b2;
+      --purple: #b18aff;
+      --line: #393141;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(
+        ellipse at 50% 35%,
+        #20182b 0%,
+        var(--bg) 58%
+      );
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 26px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      color: #d7c7f5;
+      letter-spacing: .2em;
+      font-size: .85rem;
+    }
+
+    .heart {
+      color: var(--purple);
+      font-size: 1.8rem;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 20px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .navlinks a:hover {
+      color: white;
+    }
+
+    main {
+      width: min(900px, 100%);
+      margin: auto;
+      padding: 30px 24px;
+    }
+
+    .hero {
+      min-height: 65vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      font-size: .7rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(3.2rem, 10vw, 6.3rem);
+      font-weight: 400;
+      letter-spacing: -.05em;
+      margin: 0 0 26px;
+    }
+
+    .intro {
+      max-width: 570px;
+      color: #d8d1df;
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+
+    .rule {
+      width: 58px;
+      height: 2px;
+      background: var(--purple);
+      margin: 30px 0 20px;
+    }
+
+    .date {
+      color: var(--muted);
+      letter-spacing: .3em;
+      font-size: .85rem;
+    }
+
+    .section {
+      margin: 25px 0;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(28, 24, 35, .85);
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+
+    .sub {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .reminders {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .reminder {
+      background: #211d28;
+      border: 1px solid #383041;
+      color: var(--text);
+      border-radius: 13px;
+      padding: 18px 15px;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      transition: .2s;
+    }
+
+    .reminder:hover {
+      transform: translateY(-3px);
+      border-color: var(--purple);
+    }
+
+    .reminder span {
+      display: block;
+      color: var(--purple);
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .reminder strong {
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .surprise-wrap {
+      text-align: center;
+    }
+
+    .button {
+      border: 1px solid var(--purple);
+      background: var(--purple);
+      color: #17121e;
+      border-radius: 999px;
+      padding: 13px 22px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 650;
+      transition: .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #c5aaff;
+    }
+
+    .revealed {
+      display: none;
+      margin: 22px auto 0;
+      max-width: 520px;
+      color: #e7dff0;
+      line-height: 1.9;
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+    }
+
+    .revealed.show {
+      display: block;
+      animation: fade .5s ease;
+    }
+
+    .toast {
+      display: none;
+      margin-top: 18px;
+      padding: 15px;
+      border: 1px solid #40354c;
+      border-radius: 12px;
+      background: #211b2a;
+      color: #eee5f9;
+      line-height: 1.7;
+    }
+
+    .toast.show {
+      display: block;
+      animation: fade .3s ease;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 45px 20px 30px;
+      color: var(--muted);
+      font-size: .7rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .tiny-heart {
+      color: var(--purple);
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav {
+        padding: 22px 16px;
+      }
+
+      .brand {
+        font-size: .7rem;
+        letter-spacing: .12em;
+      }
+
+      .navlinks {
+        gap: 12px;
+        font-size: .75rem;
+      }
+
+      main {
+        padding: 20px 16px;
+      }
+
+      .section {
+        padding: 22px 17px;
+      }
+
+      .reminders {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <a class="brand" href="#home">To My Hope</a>
+    <span class="heart" aria-hidden="true">♡</span>
+
+    <nav class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#reminders">Reminders</a>
+      <a href="#surprise">For you</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="eyebrow">A little reminder, just for you</div>
+
+      <h1>I love you.</h1>
+
+      <p class="intro">
+        Not just today, and not only when everything is easy.
+        I love you in the ordinary moments, in the quiet ones,
+        and in all the little ways that make you <em>you</em>.
+        I’m really grateful I get to love you.
+      </p>
+
+      <div class="rule"></div>
+
+      <div class="date">08 / 30 · ALWAYS YOU</div>
+    </section>
+
+    <section class="section" id="reminders">
+      <h2>For the days you need it.</h2>
+
+      <p class="sub">
+        Tap one whenever you need a little reminder from me.
+      </p>
+
+      <div class="reminders">
+        <button class="reminder"
+          data-message="You never have to earn my care by having a perfect day. You can be tired, quiet, overwhelmed, or unsure. You are still someone I love.">
+
+          <span>When it’s a lot</span>
+          <strong>You don’t have to be okay all the time.</strong>
+        </button>
+
+        <button class="reminder"
+          data-message="Even when we’re doing our own things, you still cross my mind. I hope something small makes you smile today—and I hope you know you’re one of my favourite thoughts.">
+
+          <span>When you miss me</span>
+          <strong>Somewhere, I’m thinking of you.</strong>
+        </button>
+
+        <button class="reminder"
+          data-message="I love the person you are, not some perfect version of you. The little things, your ways, your laugh, and all the parts you might not even notice about yourself matter to me.">
+
+          <span>When you forget</span>
+          <strong>You’re loved exactly as you are.</strong>
+        </button>
+      </div>
+
+      <div class="toast" id="reminder-message"
+        role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="section surprise-wrap" id="surprise">
+      <h2>One more thing…</h2>
+
+      <p class="sub">
+        Because apparently one “I love you” wasn’t enough.
+      </p>
+
+      <button class="button" id="surprise-button">
+        Open your little surprise ♡
+      </button>
+
+      <p class="revealed" id="surprise-message">
+        Hope, if you’re reading this, come here for a second
+        (yes, through the screen). I wish I could give you a hug
+        right now. I can’t promise every day will be perfect,
+        but I can promise that what I feel for you is real.
+        Thank you for being you, and for being part of my life.
+        I love you, girl. Always you.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Made with love <span class="tiny-heart">♡</span> just for Hope
+  </footer>
+
+  <script>
+    const messageBox = document.getElementById("reminder-message");
+
+    document.querySelectorAll(".reminder").forEach((button) => {
+      button.addEventListener("click", () => {
+        messageBox.textContent = button.dataset.message;
+        messageBox.classList.remove("show");
+
+        requestAnimationFrame(() => {
+          messageBox.classList.add("show");
+        });
+      });
+    });
+
+    document.getElementById("surprise-button")
+      .addEventListener("click", () => {
+        const message = document.getElementById("surprise-message");
+        const button = document.getElementById("surprise-button");
+
+        message.classList.toggle("show");
+
+        button.textContent = message.classList.contains("show")
+          ? "Keep this little reminder ♡"
+          : "Open your little surprise ♡";
+      });
+  </script>
+</body>
+</html>
